@@ -9,8 +9,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./aleksanderpalamar.sqlite"
+  provider = "postgresql"
+  url      = "postgres://default:9byxmuQB2AOp@ep-yellow-water-a4cis6zh.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
 }
 
 model Account {
