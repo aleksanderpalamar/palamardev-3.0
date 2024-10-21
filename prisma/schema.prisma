@@ -27,20 +27,20 @@ model Account {
   id_token          String?
   session_state     String?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user UserNextAuth @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
 
 model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
+  id           String       @id @default(cuid())
+  sessionToken String       @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         UserNextAuth @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model User {
+model UserNextAuth {
   id            String    @id @default(cuid())
   name          String?
   email         String    @unique
@@ -62,25 +62,25 @@ model VerificationToken {
 }
 
 model Project {
-  id          String   @id @default(cuid())
+  id          String       @id @default(cuid())
   title       String
   description String
   imageUrl    String?
   githubUrl   String?
   liveUrl     String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   userId      String
-  user        User     @relation(fields: [userId], references: [id])
+  user        UserNextAuth @relation(fields: [userId], references: [id])
 }
 
 model Post {
-  id        String   @id @default(cuid())
+  id        String       @id @default(cuid())
   title     String
   content   String
-  published Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  published Boolean      @default(false)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      UserNextAuth @relation(fields: [userId], references: [id])
 }

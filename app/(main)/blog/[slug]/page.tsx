@@ -1,6 +1,10 @@
 import { getSinglePost } from "@/Functions/get-posts";
 import { marked } from "marked";
 
+export const revalidate = 60
+export const dynamicParams = true
+export const runtime = 'edge'
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = await getSinglePost(params.slug)
   const content = marked.parse(post?.content || '')
