@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
 interface RichTextEditorProps {
@@ -10,20 +11,48 @@ interface RichTextEditorProps {
 export default function RichTextEditor({ value, onChange }: RichTextEditorProps) {
   const editorRef = useRef<any>(null)
 
-  useEffect(() => {
-    if (editorRef.current) {
-      editorRef.current.setContent(value)
+  const [bookmark, setBookmark] = useState<any>(null)
+
+  const saveSelection = () => {
+    if (editorRef.current?.editor) {
+      const bookmarkData = editorRef.current.editor.selection.getBookmark(2, true)
+      setBookmark(bookmarkData)
     }
-  }, [value])
+  }
+
+  const restoreSelection = () => {
+    if (editorRef.current?.editor && bookmark) {
+      editorRef.current.editor.selection.moveToBookmark(bookmark)
+      editorRef.current.editor.focus()
+    }
+  }
+
+  useEffect(() => {
+    if (editorRef.current?.editor) {
+      const editor = editorRef.current.editor
+      const content = editor.getContent()
+      if (content !== value) {
+        editor.undoManager.transact(() => {
+          editor.setContent(value)
+          restoreSelection()
+        })
+      }
+    }
+  }, [value, bookmark])
+
+  const handleEditorChange = (content: string) => {
+    saveSelection()
+    onChange(content)
+  }
 
   return (
     <Editor
-      apiKey="zgvgsm2om6k1p0bjguklokui8r5capr85b2nkqbb5fb2g39h" // Replace with your actual TinyMCE API key
+      apiKey={process.env.NEXT_PUBLIC_TINYMCE_API_KEY}
       onInit={(evt, editor) => editorRef.current = editor}
       initialValue={value}
       init={{
         height: 500,
-        menubar: false,
+        menubar: true,
         plugins: [
           'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
           'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
@@ -33,9 +62,36 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
           'bold italic forecolor | alignleft aligncenter ' +
           'alignright alignjustify | bullist numlist outdent indent | ' +
           'removeformat | image | code | help',
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        branding: false,
+        content_style: `
+          body {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
+          }
+          @media (min-width: 840px) {
+            html {
+              background: #eceef4;
+              min-height: 100%;
+              padding: 0 .5rem;
+            }
+            body {
+              background-color: #fff;
+              box-shadow: 0 0 4px rgba(0, 0, 0, .15);
+              box-sizing: border-box;
+              margin: 1rem auto 0;
+              max-width: 820px;
+              min-height: calc(100vh - 1rem);
+              padding: 4rem 6rem 6rem 6rem;
+            }
+          }
+        `,
+        setup: (editor) => {
+          editor.on('BeforeAddUndo', (e) => {
+            e.preventDefault()
+          })
+        },
       }}
-      onEditorChange={(content) => onChange(content)}
+      onEditorChange={handleEditorChange}
     />
   )
 }

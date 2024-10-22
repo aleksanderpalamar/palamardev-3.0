@@ -3,7 +3,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Input } from '@/components/ui/input'
-import RichTextEditor from '@/components/RichTextEditor'
+import dynamic from 'next/dynamic'
+
+const ServerComponent = dynamic(() => import('@/components/RichTextEditor'), { ssr: false })
 
 export default function NewPost() {
   const [title, setTitle] = useState('')
@@ -43,7 +45,7 @@ export default function NewPost() {
           <label htmlFor="content" className="block text-sm font-medium text-zinc-50">
             Content
           </label>
-          <RichTextEditor
+          <ServerComponent
             value={content}
             onChange={setContent}
           />

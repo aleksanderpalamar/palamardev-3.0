@@ -1,16 +1,12 @@
 import { getSinglePost } from "@/Functions/get-posts";
 import { marked } from "marked";
 
-export const revalidate = 60
-export const dynamicParams = true
-export const runtime = 'edge'
-
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = await getSinglePost(params.slug)
   const content = marked.parse(post?.content || '')
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
+    <div className="max-w-6xl mx-auto space-y-6" >
       <h1 className="text-4xl font-bold">
         {post?.title}
       </h1>

@@ -30,6 +30,7 @@ yarn-error.log*
 
 # prisma only db files
 /prisma/dev.db
+/prisma/aleksanderpalamar.sqlite
 
 
 # vercel

@@ -3,6 +3,9 @@ import { ArrowRight, Loader2 } from "lucide-react"
 import { marked } from "marked";
 import Link from "next/link"
 
+export const revalidate = 60
+export const dynamic = 'force-dynamic'
+
 export default async function Blog() {
   const posts = await getPosts()
 
@@ -31,7 +34,7 @@ export default async function Blog() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
+    <div className="max-w-6xl mx-auto space-y-6" >
       <h1 className="text-4xl font-bold">
         Articles
       </h1>
