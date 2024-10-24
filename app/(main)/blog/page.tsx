@@ -1,6 +1,5 @@
 import { getPosts } from "@/Functions/get-posts"
 import { ArrowRight, Loader2 } from "lucide-react"
-import { marked } from "marked";
 import Link from "next/link"
 
 export const revalidate = 60
@@ -9,13 +8,9 @@ export const dynamic = 'force-dynamic'
 export default async function Blog() {
   const posts = await getPosts()
 
-  const renderer = new marked.Renderer();
-
-  marked.setOptions({
-    renderer,
-    breaks: true,
-    gfm: true,
-  });
+  if (!posts) {
+    return <div className="flex justify-center">Posts not found</div>
+  }
 
   const formattedDate = (date: Date) => {
     const options: Intl.DateTimeFormatOptions = {
@@ -44,10 +39,6 @@ export default async function Blog() {
             {post.title && (
               <h2 className="text-xl font-semibold text-zinc-950 mb-2">{post.title}</h2>
             )}
-            <p 
-              className="text-zinc-600 mb-4 text-clip overflow-hidden line-clamp-2"
-              dangerouslySetInnerHTML={{ __html: marked.parse(post.content) }}
-            />
             <div className="flex justify-between items-center">
               <Link href={`/blog/${post.id}`} className="flex items-center text-violet-600 hover:text-violet-800">
                 <ArrowRight className="w-6 h-6 mr-2" />

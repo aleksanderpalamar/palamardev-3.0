@@ -36,7 +36,7 @@ export default async function Home() {
             <div className="flex flex-col space-y-4 h-full">
               <div className="flex flex-col space-y-2 h-full rounded-lg border border-zinc-800 p-1">
                 <h1>{latestProject.title}</h1>
-                <p className="text-zinc-50 line-clamp-1">{latestProject.description}</p>
+                <p className="text-zinc-50 line-clamp-1"></p>
               </div>
               <Link href="/projects" className="flex items-center">
                 <ArrowRight className="w-6 h-6 mr-2" />
