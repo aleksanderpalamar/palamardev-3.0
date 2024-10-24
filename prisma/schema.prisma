@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgres://default:9byxmuQB2AOp@ep-yellow-water-a4cis6zh.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+  url      = "postgres://default:tvzFa0sET3eW@ep-nameless-dawn-a4hf90vm.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
 }
 
 model Account {
