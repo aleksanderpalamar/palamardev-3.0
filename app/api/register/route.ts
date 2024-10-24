@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 export async function POST(req: Request) {
   const { name, email, password } = await req.json()
 
-  const existingUser = await prisma.user.findUnique({
+  const existingUser = await prisma.userNextAuth.findUnique({
     where: { email },
   })
 
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
 
   const hashedPassword = await bcrypt.hash(password, 10)
 
-  const user = await prisma.user.create({
+  const user = await prisma.userNextAuth.create({
     data: {
       name,
       email,
