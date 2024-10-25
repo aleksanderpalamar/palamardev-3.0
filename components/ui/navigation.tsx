@@ -20,7 +20,7 @@ const Navigation = () => {
   ]
 
   if (session) {
-    navItems.push({ name: 'Dashboard', path: '/dashboard'})
+    navItems.push({ name: 'Dashboard', path: '/dashboard' })
   }
 
   return (
