@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button"
-import { about } from "@/data"
 import download from "@/Functions/download"
 import Image from "next/image"
+import dynamic from "next/dynamic";
 
 export default function About() {
+  const AboutComponent = dynamic(() => import('./_components/about-component'), { ssr: false })
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       <h1 className="text-4xl font-bold">About Me</h1>
@@ -18,14 +19,8 @@ export default function About() {
             quality={100}
           />
         </div>
-        <div className="flex flex-col space-y-4">
-          <p className="text-xl flex">
-            {about.map((paragraph) => (
-              <span key={paragraph.id} className="mb-4 text-zinc-50 text-wrap block text-justify">
-                {paragraph.description}
-              </span>
-            ))}
-          </p>
+        <div className="flex flex-col w-full space-y-4">
+          <AboutComponent />
           <Button 
             className="bg-violet-600 hover:bg-violet-700 text-zinc-50 px-4 py-2 rounded-lg w-fit"
             onClick={download}
