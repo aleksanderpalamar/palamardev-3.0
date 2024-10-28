@@ -2,6 +2,8 @@ import { getProjects } from "@/Functions/get-projects"
 import Image from "next/image"
 import Link from "next/link"
 
+export const revalidate = 0
+
 export default async function Projects() {
   const projects = await getProjects()
   return (
@@ -21,26 +23,15 @@ export default async function Projects() {
             )}
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h2>
-              <p className="text-gray-600 mb-4 text-clip overflow-hidden line-clamp-2">{project.description}</p>
+              <p className="text-gray-600 mb-4 text-clip overflow-hidden line-clamp-1">{project.description}</p>
               <div className="flex justify-between items-center">
-                {project.githubUrl && (
-                  <Link
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-violet-600 hover:text-violet-800"
-                  >
-                    GitHub
-                  </Link>
-                )}
                 {project.liveUrl && (
                   <Link
-                    href={project.liveUrl}
-                    target="_blank"
+                    href={`/projects/${project.id}`}
                     rel="noopener noreferrer"
-                    className="text-emerald-600 hover:text-emerald-800"
+                    className="text-emerald-600 hover:text-emerald-800 font-semibold"
                   >
-                    Live Demo
+                    View
                   </Link>
                 )}
               </div>
