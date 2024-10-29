@@ -1,4 +1,5 @@
 import DeletePostButton from '@/components/ui/delete-button'
+import EditPostButton from '@/components/ui/edit-post-button'
 import { getPosts } from '@/Functions/get-posts'
 
 export default async function BlogPostsList() {
@@ -15,7 +16,10 @@ export default async function BlogPostsList() {
                 <span className="font-medium text-violet-600 mr-2">{post.id}</span>
                 <span className="text-zinc-50">{post.title}</span>
               </div>
-              <DeletePostButton postId={post.id} />
+              <div className="flex space-x-2">
+                <EditPostButton post={post} />
+                <DeletePostButton postId={post.id} />
+              </div>
             </li>
           ))}
         </ul>

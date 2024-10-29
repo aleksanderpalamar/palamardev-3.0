@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Pencil } from "lucide-react";
+import { Loader, Pencil, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -75,7 +75,7 @@ export default function EditProjectButton({ project }: EditProjectButtonProps) {
           </div>
         </button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-zinc-900 border-none">
+      <DialogContent className="md:max-w-6xl max-w-[425px] bg-zinc-900 border-none">
         <DialogHeader>
           <DialogTitle>Edit Project</DialogTitle>
         </DialogHeader>
@@ -141,8 +141,12 @@ export default function EditProjectButton({ project }: EditProjectButtonProps) {
             />
           </div>
         </div>
-        <Button onClick={handleEdit} disabled={isEditing} className="w-full mt-4 bg-violet-600 hover:bg-violet-500 rounded-md">
-          {isEditing ? "Saving..." : "Save changes"}
+        <Button onClick={handleEdit} disabled={isEditing} className="w-min mt-4 bg-violet-600 hover:bg-violet-500 rounded-md">
+          {isEditing ? (
+            <Loader className="w-6 h-6 animate-spin" />
+          ) : (
+            <Save className="w-6 h-6" />
+          )}
         </Button>
       </DialogContent>
     </Dialog>
