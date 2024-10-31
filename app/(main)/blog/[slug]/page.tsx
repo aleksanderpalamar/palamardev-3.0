@@ -11,18 +11,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {post?.title}
       </h1>
       <div
-        className="prose prose-lg max-w-none mx-auto dark:prose-invert
-                   prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-gray-100
-                   prose-p:text-gray-700 dark:prose-p:text-gray-300
-                   prose-a:text-blue-600 hover:prose-a:text-blue-500
-                   prose-strong:text-gray-900 dark:prose-strong:text-gray-100
-                   prose-code:text-gray-900 dark:prose-code:text-gray-100 prose-code:bg-gray-100 dark:prose-code:bg-gray-800
-                   prose-code:before:content-['```'] prose-code:after:content-['```']
-                   prose-pre:text-gray-900 dark:prose-pre:text-gray-100
-                   prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800
-                   prose-blockquote:text-gray-900 dark:prose-blockquote:text-gray-100
-                   prose-img:rounded-xl prose-img:shadow-lg prose-img:shadow-gray-800/50
-                   prose-img:object-cover prose-img:object-center space-y-4"
+        className="max-w-none mx-auto text-justify text-zinc-50 border-none antialiased prose
+         prose-headings:text-zinc-50 prose-headings:font-bold prose-strong:text-zinc-300
+         prose-a:underline prose-a:text-violet-400 prose-a:hover:text-violet-500
+         prose-p:text-zinc-50 prose-img:rounded-md prose-img:aspect-square prose-img:overflow-hidden 
+         prose-img:object-cover prose-pre:bg-zinc-800 prose-pre:text-zinc-50 prose-code:p-1 prose-code:bg-zinc-800 
+         prose-code:text-zinc-50 prose-code:font-mono prose-blockquote:p-2 prose-blockquote:bg-zinc-800 
+         prose-blockquote:text-zinc-50 prose-video:rounded-lg prose-video:aspect-video"
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </div>

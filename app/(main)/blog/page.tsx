@@ -1,5 +1,5 @@
 import { getPosts } from "@/Functions/get-posts"
-import { ArrowRight, Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react"
 import Link from "next/link"
 
 export const revalidate = 60
@@ -16,7 +16,7 @@ export default async function Blog() {
     const options: Intl.DateTimeFormatOptions = {
       year: '2-digit',
       month: 'short',
-      day: 'numeric',
+      day: '2-digit',
     }
     return new Date(date).toLocaleDateString('pt-BR', options)
   }
@@ -33,18 +33,18 @@ export default async function Blog() {
       <h1 className="text-4xl font-bold">
         Articles
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="flex flex-col items-center justify-center w-full space-y-4 md:flex-row md:items-start md:space-y-0 md:space-x-4">
         {posts.map((post) => (
           <div key={post.id} className="bg-zinc-50 overflow-hidden shadow-lg rounded-xl px-6 py-4">
             {post.title && (
-              <h2 className="text-xl font-semibold text-zinc-950 mb-2">{post.title}</h2>
+              <Link href={`/blog/${post.id}`} rel="noopener noreferrer">
+                <h2 className="text-lg font-semibold text-zinc-950 mb-2 hover:underline hover:text-violet-500 cursor-pointer">
+                  {post.title}
+                </h2>
+              </Link>
             )}
             <div className="flex justify-between items-center">
-              <Link href={`/blog/${post.id}`} className="flex items-center text-violet-600 hover:text-violet-800">
-                <ArrowRight className="w-6 h-6 mr-2" />
-                Read More
-              </Link>
-              <p className="text-zinc-600">{formattedDate(post.createdAt)}</p>
+              <p className="text-zinc-600 text-xs">{formattedDate(post.createdAt)}</p>
             </div>
           </div>
         ))}
