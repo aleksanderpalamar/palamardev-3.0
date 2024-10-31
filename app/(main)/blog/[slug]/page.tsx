@@ -7,11 +7,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6" >
-      <h1 className="text-4xl font-bold">
+      <h1 className="text-4xl font-bold text-center">
         {post?.title}
       </h1>
       <div
-        className="max-w-none mx-auto text-justify text-zinc-50 border-none antialiased prose
+        className="max-w-3xl mx-auto text-justify text-zinc-50 border-none antialiased prose
          prose-headings:text-zinc-50 prose-headings:font-bold prose-strong:text-zinc-300
          prose-a:underline prose-a:text-violet-400 prose-a:hover:text-violet-500
          prose-p:text-zinc-50 prose-img:rounded-md prose-img:aspect-square prose-img:overflow-hidden 
