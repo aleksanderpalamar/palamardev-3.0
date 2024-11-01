@@ -51,6 +51,7 @@ model UserNextAuth {
   sessions      Session[]
   projects      Project[]
   posts         Post[]
+  products      Product[]
 }
 
 model VerificationToken {
@@ -83,4 +84,16 @@ model Post {
   updatedAt DateTime     @updatedAt
   userId    String
   user      UserNextAuth @relation(fields: [userId], references: [id])
+}
+
+model Product {
+  id          String       @id @default(cuid())
+  title       String
+  description String
+  imageUrl    String?
+  price       Int
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  userId      String
+  user        UserNextAuth @relation(fields: [userId], references: [id])
 }
