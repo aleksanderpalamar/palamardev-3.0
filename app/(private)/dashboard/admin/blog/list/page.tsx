@@ -2,6 +2,8 @@ import DeletePostButton from '@/components/ui/delete-button'
 import EditPostButton from '@/components/ui/edit-post-button'
 import { getPosts } from '@/Functions/get-posts'
 
+export const revalidate = 0
+
 export default async function BlogPostsList() {
   const posts = await getPosts()
 

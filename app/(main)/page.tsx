@@ -5,6 +5,8 @@ import { getProjects } from "@/Functions/get-projects";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
+export const revalidate = 0
+
 export default async function Home() {
   const project = await getProjects()
   const post = await getPosts()
