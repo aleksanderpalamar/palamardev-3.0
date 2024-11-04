@@ -33,9 +33,9 @@ export default async function Blog() {
       <h1 className="text-4xl font-bold">
         Articles
       </h1>
-      <div className="flex flex-col items-center justify-center w-full space-y-4 md:flex-row md:items-start md:space-y-0 md:space-x-4">
+      <div className="flex flex-col items-center justify-center w-full space-y-4">
         {posts.map((post) => (
-          <div key={post.id} className="bg-zinc-50 overflow-hidden shadow-lg rounded-xl px-6 py-4">
+          <div key={post.id} className="bg-zinc-50 w-full max-w-4xl text-wrap flex flex-col overflow-hidden shadow-lg rounded-xl px-6 py-4">
             {post.title && (
               <Link href={`/blog/${post.id}`} rel="noopener noreferrer">
                 <h2 className="text-lg font-semibold text-zinc-950 mb-2 hover:underline hover:text-violet-500 cursor-pointer">
