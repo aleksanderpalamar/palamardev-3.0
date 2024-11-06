@@ -26,7 +26,9 @@ export default async function Store() {
               <p className="text-gray-600 mb-4 overflow-hidden truncate">{product.description}</p>
               <div className="flex justify-between items-center">
                 <p className="text-emerald-600 font-semibold">
-                  <span className="mr-2">$</span>
+                  <span className="mr-2">
+                    R$
+                  </span>
                   <span className="text-2xl font-bold">{product.price}</span>
                   <span className="text-sm font-normal">,00</span>
                 </p>

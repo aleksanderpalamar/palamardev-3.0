@@ -30,7 +30,7 @@ export const PayButton = ({ price }: PayButtonProps) => {
       disabled={isLoading}
       className="w-32 h-10 bg-violet-600 hover:bg-violet-700"
     >
-      {isLoading ? 'Loading...' : 'Buy $' + price}
+      {isLoading ? 'Loading...' : 'Buy R$' + price}
     </Button>
   )
 }
