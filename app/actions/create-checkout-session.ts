@@ -31,7 +31,15 @@ export default async function createCheckoutSession() {
     cancel_url: `${process.env.NEXTAUTH_URL}/store?canceled=true`,
     metadata: {
       sessionId: sessionId
-    }
+    },
+    customer_email: undefined,
+    billing_address_collection: "required",
+  })
+
+  console.log('Checkout session created:', {
+    id: session.id,
+    customer_email: session.customer_email,
+    metadata: session.metadata
   })
 
   if (!session.url) {

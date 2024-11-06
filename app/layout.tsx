@@ -5,6 +5,7 @@ import Navigation from "@/components/ui/navigation";
 import Footer from "@/components/ui/footer";
 import NextAuthProvider from "@/provider/session-provider";
 import { SocialLinks } from "@/components/social-links";
+import { Toaster } from 'sonner'
 
 const poppinsFonts = Poppins({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
             <Navigation />
             <main className="flex-grow container mx-auto px-4 py-8">
               {children}
+              <Toaster />
             </main>
             <div className="container mx-auto px-4 py-8">
               <SocialLinks />

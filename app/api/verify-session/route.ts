@@ -16,17 +16,34 @@ export async function GET(request: Request) {
   }
 
   try {
-    const session = await stripe.checkout.sessions.retrieve(sessionId)
+    console.log('Retrieving session:', sessionId)
+    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+      expand: ['payment_intent']
+    })
+
+    const email = session.customer_details?.email
 
     const isValid = session.payment_status === 'paid'
 
-    return NextResponse.json({
+    if (!email) {
+      console.error('No customer email found in session:', sessionId)
+      return NextResponse.json({
+        isValid: false,
+        message: 'Costumer email not found in session'
+      })
+    }
+
+    const response = {
       isValid,
       session: {
         payment_status: session.payment_status,
-        customer_email: session.customer_email
+        customer_email: email
       }
-    })
+    }
+
+    console.log('Sending response to client:', response)
+
+    return NextResponse.json(response, { status: 200 })
   } catch (error) {
     console.error('Error verifying session:', error)
     return NextResponse.json(
