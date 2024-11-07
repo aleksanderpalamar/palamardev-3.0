@@ -30,7 +30,7 @@ export default async function Store() {
                     R$
                   </span>
                   <span className="text-2xl font-bold">{product.price}</span>
-                  <span className="text-sm font-normal">,00</span>
+                  <span className="text-sm font-normal">,39</span>
                 </p>
                 <Link
                   href={`/store/${product.id}`}

@@ -21,7 +21,7 @@ export default async function createCheckoutSession() {
             name: "Templates",
             description: "You buy template for your projects.",
           },
-          unit_amount: 5000,
+          unit_amount: 5239,
         },
         quantity: 1,
       }
