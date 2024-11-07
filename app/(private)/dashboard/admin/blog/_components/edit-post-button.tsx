@@ -3,11 +3,12 @@
 import { editPostAction } from "@/app/actions/editPost";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Loader, Pencil, Save } from "lucide-react";
-import { Input } from "./input";
-import RichTextEditor from "../RichTextEditor";
-import { Button } from "./button";
+import { Input } from "@/components/ui/input";
+import RichTextEditor from "@/components/RichTextEditor";
+import { Button } from "@/components/ui/button";
+
 
 export interface PostProps {
   id: string;

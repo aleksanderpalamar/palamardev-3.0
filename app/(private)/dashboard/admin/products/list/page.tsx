@@ -1,5 +1,7 @@
-import EditProductButton, { ProductProps } from "@/components/ui/edit-product"
+
 import { getProducts } from "@/Functions/get-products"
+import EditProductButton, { ProductProps } from "../_components/edit-product";
+import DeleteProductButton from "../_components/delete-product";
 
 export default async function ProductsList() {
   const products: ProductProps[] = (await getProducts()).map((product) => ({
@@ -19,6 +21,7 @@ export default async function ProductsList() {
               </div>
               <div className="flex space-x-2">
                 <EditProductButton product={product} />
+                <DeleteProductButton productId={product.id} />
               </div>
             </li>
           ))}

@@ -3,11 +3,12 @@
 import { editProductAction } from "@/app/actions/editProducts";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Loader, Pencil, Save } from "lucide-react";
-import { Input } from "./input";
-import { Textarea } from "./textarea";
-import { Button } from "./button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+
 
 export interface ProductProps {
   id: string

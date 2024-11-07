@@ -1,11 +1,11 @@
 "use client";
 
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Project } from "@/lib/interfaces";
 import { ApiProjectService } from "@/lib/services";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
 
 export const NewProjectForm = () => {
   const [title, setTitle] = useState('')

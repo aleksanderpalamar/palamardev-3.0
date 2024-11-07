@@ -1,6 +1,7 @@
-import DeletePostButton from '@/components/ui/delete-button'
-import EditPostButton from '@/components/ui/edit-post-button'
+
 import { getPosts } from '@/Functions/get-posts'
+import EditPostButton from '../_components/edit-post-button'
+import DeletePostButton from '../_components/delete-button'
 
 export const revalidate = 0
 

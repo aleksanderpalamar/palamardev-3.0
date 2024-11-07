@@ -1,11 +1,12 @@
 "use client";
 
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Product } from "@/lib/interfaces";
 import { ApiProductPostService } from "@/lib/services"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+
 
 export const NewProductForm = () => {
   const router = useRouter()

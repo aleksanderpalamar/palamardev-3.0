@@ -1,6 +1,7 @@
-import DeleteProjectButton from "@/components/ui/delete-project-button";
-import EditProjectButton, { ProjectProps } from "@/components/ui/edit-project-button";
+
 import { getProjects } from "@/Functions/get-projects";
+import EditProjectButton, { ProjectProps } from "../_components/edit-project-button";
+import DeleteProjectButton from "../_components/delete-project-button";
 
 export default async function ProjectsList() {
   const projects: ProjectProps[] = await getProjects();

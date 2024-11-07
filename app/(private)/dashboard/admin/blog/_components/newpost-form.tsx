@@ -1,11 +1,11 @@
 "use client"
 
+import { Input } from '@/components/ui/input'
 import { BlogPost } from '@/lib/interfaces'
 import { ApiBlogService } from '@/lib/services'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { Input } from './ui/input'
 
 const ServerComponent = dynamic(() => import('@/components/RichTextEditor'), { 
   ssr: true,

@@ -1,7 +1,6 @@
-import { NewPostForm } from '@/components/newpost-form'
+import { NewPostForm } from "../_components/newpost-form"
 
-export const revalidate = 60
-export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export default function NewPost() {  
   return <NewPostForm />
