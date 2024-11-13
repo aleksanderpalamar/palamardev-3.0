@@ -52,6 +52,7 @@ model UserNextAuth {
   projects      Project[]
   posts         Post[]
   products      Product[]
+  About         About[]
 }
 
 model VerificationToken {
@@ -92,6 +93,18 @@ model Product {
   description String
   imageUrl    String?
   price       Int
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  userId      String
+  user        UserNextAuth @relation(fields: [userId], references: [id])
+}
+
+model About {
+  id          String       @id @default(cuid())
+  title       String
+  description String
+  imageUrl    String
+  content     String
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   userId      String

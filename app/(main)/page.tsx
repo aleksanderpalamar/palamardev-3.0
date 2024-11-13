@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { about } from "@/data";
+import { getAbout } from "@/Functions/get-about";
 import { getPosts } from "@/Functions/get-posts";
 import { getProjects } from "@/Functions/get-projects";
 import { Loader2 } from "lucide-react";
@@ -10,7 +10,7 @@ export const revalidate = 0
 export default async function Home() {
   const project = await getProjects()
   const post = await getPosts()
-  const text = about
+  const about = await getAbout() 
 
   switch (project || post) {
     case null:
@@ -25,12 +25,12 @@ export default async function Home() {
   return (
     <div className="max-w-6xl mx-auto md:space-y-8 space-y-6">
       <h1 className="text-4xl font-bold">
-        Olá, eu sou o <p className="text-violet-400">{text[0].name}
+        Olá, eu sou o <p className="text-violet-400">{about[0].title}
           <span className="hidden md:inline">👋</span></p>
-        <span className="text-lg text-zinc-50 block">{text[0].title}</span>
+        <span className="text-lg text-zinc-50 block">{about[0].description}</span>
       </h1>
       <p className="text-lg text-zinc-50 border-l-4 border-violet-500 pl-2">
-        {text[0].phrase}
+        Sigo resolvendo problemas e impactando a vida das pessoas através do código.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="flex flex-col justify-between max-w-md w-full mx-auto" title="Últimos Projetos">

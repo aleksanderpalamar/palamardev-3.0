@@ -1,4 +1,6 @@
 import {
+  About,
+  AboutPostService,
   BlogGetService,
   BlogPost,
   BlogPostService,
@@ -70,6 +72,19 @@ export class ApiProjectService implements ProjectPostService {
     });
     if (!response.ok) {
       throw new Error("Failed to create project");
+    }
+  }
+}
+
+export class ApiAboutService implements AboutPostService {
+  async createAbout(about: About): Promise<void> {
+    const response = await fetch("/api/about", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(about)
+    });
+    if (!response.ok) {
+      throw new Error("Failed to create about");
     }
   }
 }

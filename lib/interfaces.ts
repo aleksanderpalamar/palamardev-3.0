@@ -18,6 +18,21 @@ export interface Product {
   price: number
 }
 
+export interface About {
+  title?: string
+  description?: string
+  content: string
+  imageUrl: string
+}
+
+export interface AboutGetService {
+  getAbout(about: About): Promise<void>
+}
+
+export interface AboutPostService {
+  createAbout(about: About): Promise<void>
+}
+
 export interface BlogPostService {
   createPost(post: BlogPost): Promise<void>
 }
