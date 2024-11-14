@@ -5,11 +5,13 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
 import { Logo } from './logo'
+import { about } from '@/data'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const { data: session } = useSession()
+  const aboutGet = about
 
   const navItems = [
     { name: 'Home', path: '/' },
@@ -29,7 +31,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="text-xl font-bold flex items-center gap-2">
             <Logo />
-            <span>Aleksander Palamar</span>
+            <span>{aboutGet[0].title}</span>
           </Link>
           <div className="hidden md:block">
             {navItems.map((item) => (

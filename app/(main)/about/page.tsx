@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button"
 import download from "@/Functions/download"
 import Image from "next/image"
-import { about } from "@/data/index";
 import { Loader2 } from "lucide-react";
+import { getAbout } from "@/Functions/get-about";
 
 export const revalidate = 0
 
 export default async function About() {
-  const aboutGet = about
+  const about = await getAbout()
 
   switch (about) {
     case null:
@@ -21,7 +21,7 @@ export default async function About() {
       <h1 className="text-4xl font-bold">About Me</h1>
       <div className="flex flex-col space-y-4 md:flex-row md:items-start md:space-y-0 md:space-x-4">
         <div className="flex flex-col w-48 h-64 rounded-3xl overflow-hidden shrink-0">
-          {aboutGet[0].imageUrl && (
+          {about[0]?.imageUrl && (
             <Image
               width={1000}
               height={1000}
@@ -36,12 +36,9 @@ export default async function About() {
           {about.map((paragraph) => (
             <p key={paragraph.id}
               className="mb-4 max-w-3xl mx-auto text-justify text-zinc-50 border-none antialiased prose
-              prose-headings:text-zinc-50 prose-headings:font-bold prose-strong:text-violet-400
+              prose-headings:text-zinc-50 prose-p:text-sm prose-strong:text-violet-400
                 prose-a:underline prose-a:text-violet-400 prose-a:hover:text-violet-500
-              prose-p:text-zinc-50 prose-img:rounded-md prose-img:aspect-square prose-img:overflow-hidden 
-                prose-img:object-cover prose-pre:bg-neutral-800 prose-pre:text-zinc-50 prose-code:p-2 prose-code:rounded-md
-              prose-code:bg-neutral-800 prose-code:text-zinc-50 prose-code:font-mono prose-blockquote:p-2 prose-blockquote:bg-neutral-800 
-              prose-blockquote:text-zinc-50 prose-video:rounded-lg prose-video:aspect-video"
+              prose-p:text-zinc-50"
               dangerouslySetInnerHTML={{ __html: paragraph.content }}
             />
           ))}

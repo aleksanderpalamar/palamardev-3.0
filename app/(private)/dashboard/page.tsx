@@ -3,14 +3,24 @@
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Loader2 } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export default function Dashboard() {
   const { data: session, status } = useSession()
   const router = useRouter()
 
   if (status === 'loading') {
-    return <div>Loading...</div>
+    return (
+      <div className="py-6 flex flex-col justify-center sm:py-12">
+        <Skeleton className="relative py-3 sm:max-w-xl sm:mx-auto">
+          <div className="relative px-4 py-10 bg-zinc-900 shadow-lg sm:rounded-3xl sm:p-20">
+            <Loader2 className="w-6 h-6 animate-spin" />
+            <span className="sr-only">Loading...</span>
+          </div>
+        </Skeleton>
+      </div>
+    )
   }
 
   if (status === 'unauthenticated') {
@@ -32,7 +42,6 @@ export default function Dashboard() {
             </div>
             <div className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                <p>What would you like to do?</p>
                 <ul className="list-disc space-y-2">
                   <li className="flex items-center">
                     <ArrowRight className="h-5 w-5 text-violet-50 bg-violet-600 rounded-full" />
@@ -42,10 +51,18 @@ export default function Dashboard() {
                       </Link>
                     </p>
                   </li>
+                  <li className="flex items-center">
+                    <ArrowRight className="h-5 w-5 text-violet-50 bg-violet-600 rounded-full" />
+                    <p className="ml-2">
+                      <Link href="/dashboard/admin/about/list" className="text-violet-600 hover:text-violet-700">
+                        List About
+                      </Link>
+                    </p>
+                  </li>
                 </ul>
                 <div className="border-b border-gray-200 p-1" />
                 <ul className="list-disc space-y-2">
-                <li className="flex items-center">
+                  <li className="flex items-center">
                     <ArrowRight className="h-5 w-5 text-violet-50 bg-violet-600 rounded-full" />
                     <p className="ml-2">
                       <Link href="/dashboard/admin/products/new"
