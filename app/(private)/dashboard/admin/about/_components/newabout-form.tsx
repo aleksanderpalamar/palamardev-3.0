@@ -80,9 +80,11 @@ export const NewAboutForm = () => {
             onChange={setContent}
           />          
         </div>
+        <div className="flex justify-end items-center space-x-2">
         <button type="submit" className="bg-violet-500 text-white px-4 py-2 rounded-md hover:bg-violet-600">
           Publish
         </button>        
+        </div>       
       </form>
     </div>
   )

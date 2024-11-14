@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button"
 import download from "@/Functions/download"
 import Image from "next/image"
-import { getAbout } from "@/Functions/get-about";
+import { about } from "@/data/index";
 import { Loader2 } from "lucide-react";
 
 export const revalidate = 0
 
 export default async function About() {
-  const about = await getAbout()
+  const aboutGet = about
 
   switch (about) {
     case null:
@@ -21,7 +21,7 @@ export default async function About() {
       <h1 className="text-4xl font-bold">About Me</h1>
       <div className="flex flex-col space-y-4 md:flex-row md:items-start md:space-y-0 md:space-x-4">
         <div className="flex flex-col w-48 h-64 rounded-3xl overflow-hidden shrink-0">
-          {about[0].imageUrl && (
+          {aboutGet[0].imageUrl && (
             <Image
               width={1000}
               height={1000}

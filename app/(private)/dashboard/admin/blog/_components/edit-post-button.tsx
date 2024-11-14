@@ -26,7 +26,7 @@ export default function EditPostButton({ post }: EditPostButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
-  const hadleEdit = async () => {
+  const handleEdit = async () => {
     setIsEditing(true)
     try {
       const result = await editPostAction(
@@ -88,7 +88,7 @@ export default function EditPostButton({ post }: EditPostButtonProps) {
             />
           </div>
           <Button
-            onClick={hadleEdit}
+            onClick={handleEdit}
             disabled={isEditing}
             className="w-min mt-4 bg-violet-600 hover:bg-violet-500 rounded-md"
           >
