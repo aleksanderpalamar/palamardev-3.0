@@ -1,6 +1,5 @@
 "use client";
 
-import { editPostAction } from "@/app/actions/editPost";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -8,6 +7,7 @@ import { Loader, Pencil, Save } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import RichTextEditor from "@/components/RichTextEditor";
 import { Button } from "@/components/ui/button";
+import { editPost } from "@/app/actions/editPost";
 
 
 export interface PostProps {
@@ -29,13 +29,11 @@ export default function EditPostButton({ post }: EditPostButtonProps) {
   const handleEdit = async () => {
     setIsEditing(true)
     try {
-      const result = await editPostAction(
-        editedPost.id,
-        editedPost.title,
-        editedPost.content
-      )
+      const result = await editPost(post.id, {
+        title: editedPost.title,
+        content: editedPost.content
+      })
       if (result.success) {
-        // The post was edited successfully, and the page will be revalidated
         alert('Post edited successfully.')
         router.refresh()
       } else {
@@ -43,7 +41,6 @@ export default function EditPostButton({ post }: EditPostButtonProps) {
       }
     } catch (error) {
       console.error('Error editing post:', error)
-      alert('An error occurred while editing the post.')
     } finally {
       setIsEditing(false)
     }

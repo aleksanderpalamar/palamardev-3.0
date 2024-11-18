@@ -1,37 +1,18 @@
 'use server'
 
-import { PrismaClient } from '@prisma/client'
-import { revalidatePath } from 'next/cache'
+import { ProjectService } from "@/services/project-service"
+import { PrismaProjectRepository } from "@/repositories/project-repository"
+import { Project } from "@prisma/client"
 
-const prisma = new PrismaClient()
+const projectRepository = new PrismaProjectRepository()
+const postService = new ProjectService(projectRepository)
 
-export async function editProjectAction(
-  id: string,
-  title: string,
-  description: string,
-  imageUrl: string | null,
-  githubUrl: string | null,
-  liveUrl: string | null
-) {
+export async function editProject(id: string, data: Partial<Project>) {
   try {
-    const updatedProject = await prisma.project.update({
-      where: { id },
-      data: {
-        title,
-        description,
-        imageUrl,
-        githubUrl,
-        liveUrl,
-      },
-    })
-    revalidatePath('/dashboard/admin/projects/list')
-    revalidatePath(`/projects/${id}`)
-
-    return { success: true, project: updatedProject }
+    await postService.editProject(id, data);
+    return { success: true, message: 'Post updated successfully' }
   } catch (error) {
-    console.error('Error updating project:', error)
-    return { success: false, error: 'Failed to update project' }
-  } finally {
-    await prisma.$disconnect()
+    console.error('Error updating post:', error)
+    return { success: false, error: 'Failed to update post' }
   }
 }

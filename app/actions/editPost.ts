@@ -1,31 +1,18 @@
 'use server'
 
-import { PrismaClient } from '@prisma/client'
-import { revalidatePath } from 'next/cache'
+import { PostService } from "@/services/post-service"
+import { PrismaPostRepository } from "@/repositories/post-repository"
+import { Post } from "@prisma/client"
 
-const prisma = new PrismaClient()
+const postRepository = new PrismaPostRepository()
+const postService = new PostService(postRepository)
 
-export async function editPostAction(
-  id: string,
-  title: string,
-  content: string
-) {
+export async function editPost(id: string, data: Partial<Post>) {
   try {
-    const updatedPost = await prisma.post.update({
-      where: { id },
-      data: {
-        title,
-        content,
-      },
-    })
-    revalidatePath('/dashboard/admin/blog/list')
-    revalidatePath(`/blog/${id}`)
-
-    return { success: true, post: updatedPost }
+    await postService.editPost(id, data);
+    return { success: true, message: 'Post updated successfully' }
   } catch (error) {
     console.error('Error updating post:', error)
     return { success: false, error: 'Failed to update post' }
-  } finally {
-    await prisma.$disconnect()
   }
 }

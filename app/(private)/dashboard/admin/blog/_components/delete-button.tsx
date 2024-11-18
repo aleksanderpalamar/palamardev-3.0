@@ -1,17 +1,21 @@
 'use client'
 
 import { useState } from 'react'
-import { deletePostAction } from '@/app/actions/deletePost'
+
 import { Loader2, Trash2 } from 'lucide-react'
+import { deletePostAction } from '@/app/actions/deletePost'
+import { useRouter } from 'next/navigation'
 
 export default function DeletePostButton({ postId }: { postId: string }) {
   const [isDeleting, setIsDeleting] = useState(false)
+  const router = useRouter()
 
   const handleDelete = async () => {
     setIsDeleting(true)
     const result = await deletePostAction(postId)
     if (result.success) {
       // The post was deleted successfully, and the page will be revalidated
+      router.refresh()
     } else {
       alert('Failed to delete post. Please try again.')
     }

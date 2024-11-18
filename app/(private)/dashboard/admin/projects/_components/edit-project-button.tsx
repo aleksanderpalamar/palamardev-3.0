@@ -12,8 +12,8 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { editProjectAction } from "@/app/actions/editProject";
 import { useRouter } from "next/navigation";
+import { editProject } from "@/app/actions/editProject";
 
 // Defina o tipo ProjectProps para corresponder ao tipo Project
 export interface ProjectProps {
@@ -38,14 +38,13 @@ export default function EditProjectButton({ project }: EditProjectButtonProps) {
   const handleEdit = async () => {
     setIsEditing(true)
     try {
-      const result = await editProjectAction(
-        editedProject.id,
-        editedProject.title,
-        editedProject.description,
-        editedProject.imageUrl,
-        editedProject.githubUrl,
-        editedProject.liveUrl
-      )
+      const result = await editProject(project.id, {
+        title: editedProject.title,
+        description: editedProject.description,
+        imageUrl: editedProject.imageUrl,
+        githubUrl: editedProject.githubUrl,
+        liveUrl: editedProject.liveUrl
+      })
       if (result.success) {
         // The project was edited successfully, and the page will be revalidated
         alert('Project edited successfully.')
