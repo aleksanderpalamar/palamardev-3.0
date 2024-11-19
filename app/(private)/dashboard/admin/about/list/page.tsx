@@ -1,5 +1,6 @@
 import { getAbout } from "@/Functions/get-about"
 import DeleteAboutButton from "../_components/delete-button"
+import EditAboutButton from "../_components/edit-about-button"
 
 export const revalidate = 0
 
@@ -18,6 +19,7 @@ export default async function AboutList() {
                 <span className="text-gray-50">{a.title}</span>
               </div>
               <div className="flex space-x-2">
+                <EditAboutButton about={a} />
                 <DeleteAboutButton aboutId={a.id} />
               </div>
             </li>
