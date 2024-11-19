@@ -1,17 +1,20 @@
 "use client";
 
-import { deleteProductAction } from "@/app/actions/deleteProductAction";
+import { deleteProduct } from "@/app/actions/deleteProductAction";
 import { Loader2, Trash2 } from "lucide-react";
 import { useState } from "react"
+import { useRouter } from "next/navigation";
 
 export default function DeleteProductButton({ productId }: { productId: string }) {
   const [isDeleting, setIsDeleting] = useState(false)
+  const router = useRouter()
 
   const handleDelete = async () => {
     setIsDeleting(true)
-    const result = await deleteProductAction(productId)
+    const result = await deleteProduct(productId)
     if (result.success) {
       // The post was deleted successfully, and the page will be revalidated
+      router.refresh()
     } else {
       alert('Failed to delete post. Please try again.')
     }

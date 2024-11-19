@@ -1,6 +1,5 @@
 "use client";
 
-import { editProductAction } from "@/app/actions/editProducts";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -8,6 +7,7 @@ import { Loader, Pencil, Save } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import editProducts from "@/app/actions/editProducts";
 
 
 export interface ProductProps {
@@ -31,12 +31,14 @@ export default function EditProductButton({ product }: EditProductButtonProps) {
   const handleEdit = async () => {
     setIsEditing(true)
     try {
-      const result = await editProductAction(
-        editedProduct.id,
-        editedProduct.title,
-        editedProduct.description,
-        editedProduct.imageUrl,
-        editedProduct.price
+      const result = await editProducts(
+        product.id,
+        {
+          title: editedProduct.title,
+          description: editedProduct.description,
+          imageUrl: editedProduct.imageUrl,
+          price: editedProduct.price
+        }
       )
       if (result.success) {
         alert('Product edited successfully.')

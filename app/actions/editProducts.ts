@@ -1,35 +1,18 @@
 'use server';
 
-import { PrismaClient } from '@prisma/client';
-import { revalidatePath } from 'next/cache';
+import { ProductService } from "@/services/product-service";
+import { PrismaProductRepository } from "@/repositories/product-repository";
+import { Product } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const productRepository = new PrismaProductRepository()
+const productService = new ProductService(productRepository)
 
-export async function editProductAction(
-  id: string,
-  title: string,
-  description: string,
-  imageUrl: string | null,
-  price: number
-) {
+export default async function editProducts(id: string, data: Partial<Product>) {
   try {
-    const updatedProduct = await prisma.product.update({
-      where: { id },
-      data: {
-        title,
-        description,
-        imageUrl,
-        price
-      },
-    })
-    revalidatePath('/dashboard/admin/products/list')
-    revalidatePath(`/products/${id}`)
-
-    return { success: true, product: updatedProduct }
+    await productService.editProduct(id, data);
+    return { success: true, message: 'Product updated successfully' }
   } catch (error) {
     console.error('Error updating product:', error)
     return { success: false, error: 'Failed to update product' }
-  } finally {
-    await prisma.$disconnect()
-  }
+  }  
 }
