@@ -29,39 +29,48 @@ export type State = {
 }
 
 export async function submitQuote(prevState: State, formData: FormData): Promise<State> {
-  const validatedFields = QuoteSchema.safeParse({
-    name: formData.get('name'),
-    email: formData.get('email'),
-    phone: formData.get('phone'),
-    projectType: formData.get('projectType'),
-    budget: formData.get('budget'),
-    description: formData.get('description'),
-  })
-
-  if (!validatedFields.success) {
+  try {
+    const validatedFields = QuoteSchema.safeParse({
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      projectType: formData.get('projectType'),
+      budget: formData.get('budget'),
+      description: formData.get('description'),
+    })
+  
+    if (!validatedFields.success) {
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        message: null,
+        whatsappLink: null,
+      }
+    }
+  
+    const { name, email, phone, projectType, budget, description } = validatedFields.data
+  
+    const message = `Nova solicitação de orçamento:
+      Nome: ${name}
+      Email: ${email}
+      Telefone: ${phone}
+      Tipo de Projeto: ${projectType}
+      Orçamento: ${budget}
+      Descrição: ${description}`
+  
+    const whatsappNumber = process.env.WHATSAPP_NUMBER
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+  
     return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: null,
+      errors: {},
+      message: 'Solicitação de orçamento enviada com sucesso! Clique no botão abaixo para continuar no WhatsApp.',
+      whatsappLink,
+    } 
+  } catch (error) {
+    console.error('Error submitting quote:', error)
+    return {
+      errors: {},
+      message: 'Ocorreu um erro ao enviar a solicitação de orçamento. Por favor, tente novamente mais tarde.',
       whatsappLink: null,
     }
-  }
-
-  const { name, email, phone, projectType, budget, description } = validatedFields.data
-
-  const message = `Nova solicitação de orçamento:
-    Nome: ${name}
-    Email: ${email}
-    Telefone: ${phone}
-    Tipo de Projeto: ${projectType}
-    Orçamento: ${budget}
-    Descrição: ${description}`
-
-  const whatsappNumber = '5541987938328'
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
-
-  return {
-    errors: {},
-    message: 'Solicitação de orçamento enviada com sucesso! Clique no botão abaixo para continuar no WhatsApp.',
-    whatsappLink,
   }
 }
