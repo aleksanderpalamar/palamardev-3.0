@@ -26,7 +26,7 @@ const Navigation = () => {
   }
 
   return (
-    <nav className="bg-zinc-950 text-zinc-50 border-b border-zinc-800">
+    <nav className="bg-zinc-950 text-zinc-50 border-b border-zinc-900">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="text-xl font-bold flex items-center gap-2">

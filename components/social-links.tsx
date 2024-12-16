@@ -5,7 +5,7 @@ import { SiBluesky } from "react-icons/si";
 
 export const SocialLinks = () => {
   return (
-    <footer className="max-w-6xl w-full h-16 mx-auto rounded-xl overflow-hidden shadow-2xl bg-zinc-900 group p-3">
+    <footer className="max-w-6xl w-full h-16 mx-auto rounded-xl overflow-hidden shadow-2xl border border-zinc-900 group p-3">
       <div className="overflow-hidden group p-1.5 flex items-center justify-center space-x-4">
         <Link href="https://github.com/aleksanderpalamar" target="_blank" className="flex items-center gap-2">
           <FaGithub className="w-8 h-8 mb-4 border-[1px] border-zinc-700 rounded-md p-1 hover:bg-zinc-700" />

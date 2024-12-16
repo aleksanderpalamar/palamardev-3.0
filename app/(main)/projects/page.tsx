@@ -11,7 +11,7 @@ export default async function Projects() {
       <h1 className="text-4xl font-bold">My Projects</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
-          <div key={project.id} className="bg-white overflow-hidden shadow-lg rounded-xl border border-zinc-800">
+          <div key={project.id} className="bg-zinc-950 overflow-hidden shadow-lg rounded-xl border border-zinc-900">
             {project.imageUrl && (
               <Image
                 width={400}
@@ -22,8 +22,8 @@ export default async function Projects() {
               />
             )}
             <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h2>
-              <p className="text-gray-600 mb-4 text-clip overflow-hidden line-clamp-1">{project.description}</p>
+              <h2 className="text-xl font-semibold text-zinc-50 mb-2">{project.title}</h2>
+              <p className="text-zinc-300 mb-4 text-clip overflow-hidden line-clamp-1">{project.description}</p>
               <div className="flex justify-between items-center">
                 {project.liveUrl && (
                   <Link

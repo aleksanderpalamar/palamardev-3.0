@@ -8,9 +8,9 @@ import { SocialLinks } from "@/components/social-links";
 import { Toaster } from 'sonner'
 
 const poppinsFonts = Poppins({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
+  subsets: ['latin'],
+  weight: ['400', '700'],
+})
 
 export const metadata: Metadata = {
   title: "Aleksander Palamar",
