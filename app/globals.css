@@ -7,6 +7,36 @@ body {
 }
 
 @layer utilities {
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  .animate-typewriter {
+    overflow: hidden;
+    border-right: 0.15em solid #a78bfa;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: typewriter 3s steps(40, end) 1s 1 normal both,
+               blinkTextCursor 0.75s steps(40, end) infinite;
+  }
+  
+  @keyframes blinkTextCursor {
+    from {
+      border-right-color: transparent;
+    }
+    to {
+      border-right-color: #a78bfa;
+    }
+  }
+}
+
+@layer utilities {
   .text-balance {
     text-wrap: balance;
   }

@@ -27,9 +27,9 @@ export default async function Home() {
     <div className="max-w-6xl mx-auto md:space-y-8 space-y-6">
       <div className="flex flex-col space-y-4 items-center justify-center max-w-4xl mx-auto mt-8">
         <h1 className="text-4xl font-bold mb-14">
-          Olá, eu sou o <p className="text-violet-400">{about[0]?.title}
+          Olá, eu sou o <p className="text-violet-400 animate-typewriter text-xl">{about[0]?.title}
             <span className="hidden md:inline">👋</span></p>
-          <span className="text-lg text-zinc-50 block">{about[0]?.description}</span>
+          <span className="text-lg text-zinc-50">{about[0]?.description}</span>
         </h1>
 
         <div className="flex flex-col items-center justify-center w-full space-y-4">
@@ -41,12 +41,14 @@ export default async function Home() {
               {latestProject && (
                 <div className="flex-grow flex flex-col space-y-4 h-full">
                   <Link href="/projects"
-                    className="flex flex-col space-y-2 h-full p-1 hover:bg-zinc-800/20">
-                    <h1 className="text-zinc-50 font-semibold flex items-center">
-                      {latestProject.title}
-                      <LinkIcon className="ml-2 w-4 h-4" />
+                    className="flex flex-col space-y-2 h-full p-1 hover:bg-zinc-800/20 group">
+                    <h1 className="text-zinc-50 font-semibold flex items-center overflow-hidden">
+                      <span className="inline-block">
+                        {latestProject.title}
+                      </span>
+                      <LinkIcon className="ml-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </h1>
-                    <p className="text-zinc-50 line-clamp-1"></p>
+                    <p className="text-zinc-50 line-clamp-1 text-lg">{latestProject.description}</p>
                   </Link>
                   <div className="flex-grow flex flex-col space-y-2 h-full" />
                 </div>
@@ -61,12 +63,13 @@ export default async function Home() {
               {latestPost && (
                 <div className="flex-grow flex flex-col space-y-4 h-full">
                   <Link href={`/blog/${latestPost.id}`}
-                    className="flex flex-col space-y-2 h-full p-1 hover:bg-zinc-800/20">
-                    <h1 className="text-zinc-50 font-semibold flex items-center">
-                      {latestPost.title}
-                      <LinkIcon className="ml-2 w-4 h-4" />
+                    className="flex flex-col space-y-2 h-full p-1 hover:bg-zinc-800/20 group">
+                    <h1 className="text-zinc-50 font-semibold flex items-center overflow-hidden">
+                      <span className="inline-block">
+                        {latestPost.title}
+                      </span>
+                      <LinkIcon className="ml-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </h1>
-                    <p className="text-zinc-50 line-clamp-1" />
                   </Link>
                   <div className="flex-grow flex flex-col space-y-2 h-full" />
                 </div>
