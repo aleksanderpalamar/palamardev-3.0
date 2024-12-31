@@ -34,16 +34,23 @@ export default async function Blog() {
       </h1>
       <div className="flex flex-col items-center justify-center w-full space-y-4">
         {posts.map((post) => (
-          <div key={post.id} className="bg-zinc-50 w-full max-w-4xl text-wrap flex flex-col overflow-hidden shadow-lg rounded-xl px-6 py-4">
-            {post.title && (
-              <Link href={`/blog/${post.id}`} rel="noopener noreferrer">
-                <h2 className="text-lg font-semibold text-zinc-950 mb-2 hover:underline hover:text-violet-500 cursor-pointer">
-                  {post.title}
-                </h2>
-              </Link>
-            )}
-            <div className="flex justify-between items-center">
-              <p className="text-zinc-600 text-xs">{formattedDate(post.createdAt)}</p>
+          <div
+            key={post.id}
+            className="inline-flex w-full max-w-6xl animate-shine items-center rounded-xl border 
+            border-white/10 bg-[linear-gradient(110deg,#000103,45%,#303030,55%,#000103)] 
+            bg-[length:400%_100%] px-4 py-5 text-sm transition-colors"
+          >
+            <div className="flex flex-col gap-2">
+              {post.title && (
+                <Link href={`/blog/${post.id}`} rel="noopener noreferrer">
+                  <h3 className="text-xl font-semibold text-neutral-200 line-clamp-2 hover:text-primary-200 transition-colors duration-200">
+                    {post.title}
+                  </h3>
+                </Link>
+              )}
+              <div className="flex gap-2">
+                <p className="text-zinc-400 text-xs">{formattedDate(post.createdAt)}</p>
+              </div>
             </div>
           </div>
         ))}

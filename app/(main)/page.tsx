@@ -1,8 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAbout } from "@/Functions/get-about";
 import { getPosts } from "@/Functions/get-posts";
 import { getProjects } from "@/Functions/get-projects";
-import { LinkIcon, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
 export const revalidate = 0
@@ -31,51 +30,47 @@ export default async function Home() {
             <span className="hidden md:inline">👋</span></p>
           <span className="text-lg text-zinc-50">{about[0]?.description}</span>
         </h1>
-
         <div className="flex flex-col items-center justify-center w-full space-y-4">
-          <Card className="w-full md:w-1/2 bg-zinc-950 overflow-hidden shadow-lg p-1 rounded-xl border border-zinc-900">
-            <CardHeader>
-              <CardTitle className="text-zinc-50">Latest Project</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {latestProject && (
-                <div className="flex-grow flex flex-col space-y-4 h-full">
-                  <Link href="/projects"
-                    className="flex flex-col space-y-2 h-full p-1 hover:bg-zinc-800/20 group">
-                    <h1 className="text-zinc-50 font-semibold flex items-center overflow-hidden">
-                      <span className="inline-block">
+          <div className="w-full max-w-[350px]">
+            <div className="group relative grid overflow-hidden rounded-xl px-4 py-5 shadow-[0_1000px_0_0_hsl(0_0%_20%)_inset] transition-colors duration-200">
+              <span>
+                <span className="spark mask-gradient absolute inset-0 h-[100%] w-[100%] animate-flip overflow-hidden rounded-xl [mask:linear-gradient(white,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg] before:animate-rotate before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]" />
+              </span>
+              <span className="backdrop absolute inset-px rounded-[11px] bg-neutral-950 transition-colors duration-200" />
+              <div className="z-10 space-y-2">
+                {latestProject && (
+                  <>
+                    <h3 className="text-xl font-semibold text-neutral-200">Last Project</h3>
+                    <Link href={`/projects/${latestProject.id}`}>
+                      <p className="text-sm leading-[1.5] text-neutral-400">
                         {latestProject.title}
-                      </span>
-                      <LinkIcon className="ml-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </h1>
-                    <p className="text-zinc-50 line-clamp-1 text-lg">{latestProject.description}</p>
-                  </Link>
-                  <div className="flex-grow flex flex-col space-y-2 h-full" />
-                </div>
-              )}
-            </CardContent>
-          </Card>
-          <Card className="w-full md:w-1/2 bg-zinc-950 overflow-hidden shadow-lg p-1 rounded-xl border border-zinc-900">
-            <CardHeader>
-              <CardTitle className="text-zinc-50">Latest Post</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {latestPost && (
-                <div className="flex-grow flex flex-col space-y-4 h-full">
-                  <Link href={`/blog/${latestPost.id}`}
-                    className="flex flex-col space-y-2 h-full p-1 hover:bg-zinc-800/20 group">
-                    <h1 className="text-zinc-50 font-semibold flex items-center overflow-hidden">
-                      <span className="inline-block">
+                      </p>
+                    </Link>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="w-full max-w-[350px]">
+            <div className="group relative grid overflow-hidden rounded-xl px-4 py-5 shadow-[0_1000px_0_0_hsl(0_0%_20%)_inset] transition-colors duration-200">
+              <span>
+                <span className="spark mask-gradient absolute inset-0 h-[100%] w-[100%] animate-flip overflow-hidden rounded-xl [mask:linear-gradient(white,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg] before:animate-rotate before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]" />
+              </span>
+              <span className="backdrop absolute inset-px rounded-[11px] bg-neutral-950 transition-colors duration-200" />
+              <div className="z-10 space-y-2">
+                {latestPost && (
+                  <>
+                    <h3 className="text-xl font-semibold text-neutral-200">Last Post</h3>
+                    <Link href={`/blog/${latestPost.id}`}>
+                      <p className="text-sm leading-[1.5] text-neutral-400 line-clamp-2 overflow-hidden">
                         {latestPost.title}
-                      </span>
-                      <LinkIcon className="ml-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </h1>
-                  </Link>
-                  <div className="flex-grow flex flex-col space-y-2 h-full" />
-                </div>
-              )}
-            </CardContent>
-          </Card>
+                      </p>
+                    </Link>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
