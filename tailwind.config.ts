@@ -55,8 +55,14 @@ const config: Config = {
         flip: "flip 6s infinite steps(2, end)",
         rotate: "rotate 3s linear infinite both",
         shine: "shine 6s linear infinite",
+        "text-gradient": "text-gradient 1.5s linear infinite"
       },
       keyframes: {
+        "text-gradient": {
+          to: {
+            backgroundPosition: "200% center",
+          },
+        },
         shine: {
           from: {
             backgroundPosition: "0 0",

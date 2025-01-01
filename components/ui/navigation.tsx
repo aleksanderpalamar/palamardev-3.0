@@ -31,7 +31,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="text-xl font-bold flex items-center gap-2">
             <Logo />
-            <span>{aboutGet[0].title}</span>
+            <span className="hidden md:block text-sm">{aboutGet[0].title}</span>
           </Link>
           <div className="hidden md:block">
             {navItems.map((item) => (

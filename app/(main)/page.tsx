@@ -25,9 +25,14 @@ export default async function Home() {
   return (
     <div className="max-w-6xl mx-auto md:space-y-8 space-y-6">
       <div className="flex flex-col space-y-4 items-center justify-center max-w-4xl mx-auto mt-8">
-        <h1 className="text-4xl font-bold mb-14">
-          Olá, eu sou o <p className="text-violet-400 animate-typewriter text-xl">{about[0]?.title}
-            <span className="hidden md:inline">👋</span></p>
+        <h1 className="text-4xl font-bold mb-14 flex flex-col">
+          Olá, eu sou o 
+          <p className="inline-flex animate-text-gradient bg-gradient-to-r from-[#ACACAC] 
+            via-[#363636] to-[#ACACAC] bg-[200%_auto] bg-clip-text text-center text-2xl 
+              font-semibold text-transparent">
+              {about[0]?.title}
+            <span className="hidden md:inline">👋</span>
+          </p>
           <span className="text-lg text-zinc-50">{about[0]?.description}</span>
         </h1>
         <div className="flex flex-col items-center justify-center w-full space-y-4">
