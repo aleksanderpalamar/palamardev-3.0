@@ -35,7 +35,7 @@ export default function RootLayout({
               <Toaster />
             </main>
             <div className="container mx-auto px-4 py-8">
-              <SocialLinks />
+              <SocialLinks />              
             </div>
             <Footer />
           </div>
